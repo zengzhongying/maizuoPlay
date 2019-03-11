@@ -2,15 +2,15 @@ var express = require('express');
 var router = express.Router();
 var mysql  = require('../mysql/db')
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'zzy' });
-  // var list = [];
-  // for (let i in [1, 2, 3]) {
-  //   list.push({ name: `我是第${i + 1}个` })
-  // }
-  // var obj = { msg: "123", input: req.query, list: list }
-  // res.send(obj)
-});
+// router.get('/', function (req, res, next) {
+//   res.render('index', { title: 'zzy' });
+//   // var list = [];
+//   // for (let i in [1, 2, 3]) {
+//   //   list.push({ name: `我是第${i + 1}个` })
+//   // }
+//   // var obj = { msg: "123", input: req.query, list: list }
+//   // res.send(obj)
+// });
 
 router.get('/zzy', function (req, res, next) {
   var result = ""
