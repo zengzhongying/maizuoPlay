@@ -66,8 +66,8 @@ router.get('/mysql',function(req,res,next){
   })
 })
 
-router.get('/create',function(req,res,next){
-  mysql.query(`insert into students (sex,name,age)value(0,"${req.query.name}",${req.query.age});`,(err,result)=>{
+router.post('/create',function(req,res,next){
+  mysql.query(`insert into students (sex,name,age) value (0,"${req.body.name}",${req.body.age});`,(err,result)=>{
     if(err){
       res.send('执行出错了')
     }else{

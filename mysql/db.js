@@ -15,8 +15,9 @@ db.query = function(sql, callback){
 		return;
 	}
 	pool.query(sql, function(err, rows, fields) {
+		console.log("sql>>>>>>>>>:",sql)
 	  if (err) {
-	    console.log(err);
+	   	console.log(err);
 	    callback(err, null);
 	    return;
 	  };
