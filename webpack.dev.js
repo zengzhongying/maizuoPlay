@@ -77,23 +77,25 @@ module.exports = {
 			},
 		]
 	},
-	// entry: './app.js',
+	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'public/javascripts'),
-		chunkFilename: '[name].js',
-		filename: '[name].js'
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/asset/',
 	},
 	devServer: {
-
-		// contentBase: path.resolve(__dirname, './public/javascripts'),
-		// contentBase: './public/javascripts',
+		inline: true,
+		contentBase: './public',
+		open: true,
 		host: 'localhost',
-		port: '3000',
-		open: false, //自动拉起浏览器
-		hot: true,//热加载
-		// hotOnly:true
+		port: '3001',
+		proxy: {
+			"/api": {
+				target: "http://localhost:3000",
+				pathRewrite: { "^/api": "" } 
+			}
+		}
 	},
-
 	plugins: [
 		// 请确保引入这个插件！
 		new VueLoaderPlugin(),
