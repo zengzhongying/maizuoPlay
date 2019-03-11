@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>123123</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <h1>123123</h1>
+  <div id="c">
+    <input type="text" v-model="username">
+    <br>
+    <input type="number" v-model="age">
+    <br>
+    <button @click="dosave">保存</button>
+
+    <ul>
+      <li v-for="(item,index) in items" :key="item.id">
+        <span>{{item.id}}</span>----
+        <span>{{item.Name}}</span>----
+        <span>{{item.age}}</span>----
+        <span>{{item.sex}}</span>
+      </li>
+
+    </ul>
+  </div>
+  <script>
+    let vue = new Vue({
+      el: "#c",
+      data: {
+        name: "czc",
+        username: undefined,
+        age: undefined,
+        items: []
+      },
+      created() {
+        setTimeout(() => {
+          this.name = "zzy"
+        }, 5000);
+        this.fresh();
+      },
+
+      methods: {
+        dosave() {
+          var newobj = {
+            username: this.username,
+            age: this.age
+          }
+          var that = this;
+          axios.get(`/create?name=${newobj.username}&&age=${newobj.age}`)
+            .then(function (response) {
+              that.fresh();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+        fresh() {
+          var that = this;
+          axios.get(`/mysql`)
+            .then(function (response) {
+              that.items = response.data
+              that.username = undefined
+              that.age = undefined
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>
