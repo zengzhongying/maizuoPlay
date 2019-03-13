@@ -14,6 +14,13 @@ const Service = {
         ).catch(err => {
             alert("请求接口数据源报错")
         })
+    },
+    addRecords(data){
+        return api.post(`/api/addRecord`,data).then(
+            res => res.data
+        ).catch(err => {
+            alert("请求接口数据源报错")
+        })
     }
 }
 export default Service

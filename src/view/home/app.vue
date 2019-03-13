@@ -5,15 +5,15 @@
     <input type="number" v-model="age">
     <br>
     <button @click="dosave">保存</button>
-
     <ul>
       <li v-for="(item,index) in items" :key="index">
         <span>{{item.id}}</span>----
-        <span>{{item.Name}}</span>----
+        <span>{{item.name}}</span>----
         <span>{{item.age}}</span>----
         <span>{{item.sex}}</span>
       </li>
     </ul>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
     this.fresh();
   },
   methods: {
+    
     dosave() {
       var newobj = {
         name: this.username,

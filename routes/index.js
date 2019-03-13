@@ -75,5 +75,22 @@ router.post('/create',function(req,res,next){
     }
   })
 })
+router.post('/addRecord',function(req,res,next){
+  var list = req.body.records;
+  var sql = "insert into exceptions (title,content,source,besides,happendTime,component) values "
+  list.forEach((element,index) => {
+    if(index!=0){
+      sql = sql + ","
+    }
+    sql = sql + `("${element.errmsg}","${element.errcontent}","${element.source}","${element.besides}","${element.happendTime}","${element.component}")`
+  });
+  mysql.query(sql+";",(err,result)=>{
+    if(err){
+      res.send('执行出错了')
+    }else{
+      res.send(result)
+    }
+  })
+})
 module.exports = router;
 
